@@ -1,0 +1,434 @@
+  :root {
+  --primary-color: #4361ee;
+  --secondary-color: #3a0ca3;
+  --accent-color: #4cc9f0;
+  --success-color: #4ade80;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --card-bg: #ffffff;
+  --text-color: #212529;
+  --text-muted: #6c757d;
+  --border-color: #dee2e6;
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+[data-bs-theme="dark"] {
+  --primary-color: #6c8eff;
+  --secondary-color: #5a67d8;
+  --accent-color: #63e6be;
+  --success-color: #51cf66;
+  --light-color: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --text-color: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --border-color: #444;
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  background-color: var(--light-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  background-color: var(--dark-color) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: white !important;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  transition: var(--transition) !important;
+  color: white;
+}
+
+.btn-outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: white;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.section-title {
+  position: relative;
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.service-card {
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  transition: var(--transition);
+  height: 100%;
+  background: var(--card-bg);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--card-shadow);
+}
+
+.service-card .card-body {
+  padding: 2.5rem 1.5rem;
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.8rem;
+}
+
+/* Pricing Section */
+.pricing-section {
+  background: color-mix(in srgb, var(--light-color) 90%, var(--primary-color) 10%);
+  padding: 5rem 0;
+}
+
+.pricing-card {
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: var(--transition);
+  overflow: hidden;
+  background: var(--card-bg);
+  text-align: center;
+  height: 100%;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--card-shadow);
+}
+
+.pricing-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.pricing-popular {
+  border: 2px solid var(--primary-color);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--success-color);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 1rem 0;
+}
+
+.price-period {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.feature-list li i {
+  color: var(--success-color);
+  margin-right: 0.5rem;
+}
+
+/* Testimonials */
+.testimonial-card {
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  background: var(--card-bg);
+  padding: 2rem;
+  height: 100%;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  font-size: 5rem;
+  color: var(--primary-color);
+  opacity: 0.1;
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
+  font-family: Georgia, serif;
+}
+
+.client-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Stats Section */
+.stats-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 4rem 0;
+}
+
+/* Contact Form */
+.contact-form .form-control {
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: var(--transition);
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+.contact-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(108, 142, 255, 0.25);
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+.contact-form .form-control::placeholder {
+  color: var(--text-muted);
+}
+
+/* Footer */
+footer {
+  background: var(--dark-color);
+  color: white;
+  padding: 2rem 0;
+}
+
+footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+footer a:hover {
+  color: white;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  margin: 0 0.5rem;
+  transition: var(--transition);
+  color: white;
+}
+
+.social-links a:hover {
+  background: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* Text colors */
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+/* Card backgrounds */
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* Form select styling */
+.form-control, .form-select {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--primary-color);
+}
+
+/* Modal support */
+.modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Table support */
+.table {
+  color: var(--text-color);
+  --bs-table-bg: transparent;
+}
+
+/* Alert styling */
+.alert {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* List styling */
+.list-group-item {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+  
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 2.5rem;
+  }
+  
+  .section-title::after {
+    width: 40px;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Theme transition */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+ /* Back to Top Button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none; /* hidden by default */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #backToTop:hover {
+      background: #2196F3;
+      transform: scale(1.1);
+    }
+
+  
