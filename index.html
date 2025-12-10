@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhekumuzi Thabethe | Full Stack Developer</title>
+  <link rel="shortcut icon" href=""img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/custome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top justify-content-between">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="fas fa-code fa-2x me-2 text-primary"></i>
+        <span class="fw-bold fs-4">Bhekumuzi Thabethe</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <button class="btn btn-outline-light ms-2" onclick="toggleTheme()" title="Toggle Theme">
+              <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    
+
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+              <h1 class="display-4 fw-bold mb-4">Full Stack Developer & AI Enthusiast</h1>
+              <p class="lead mb-4">Building scalable web applications with modern technologies. Passionate about clean code, AI integration, and solving complex problems.</p>
+              <div class="d-flex gap-3 flex-wrap">
+                <a href="#projects" class="btn btn-light btn-lg">
+                  <i class="fa-solid fa-laptop-code me-2"></i>View Projects
+                </a>
+                <a href="#contact" class="btn btn-outline-light btn-lg">
+                  <i class="fa-solid fa-envelope me-2"></i>Contact Me
+                </a>
+              </div>
+              <div class="mt-4">
+                <small class="d-block mb-2"><i class="fa-solid fa-check text-success me-2"></i>4 Years Development Experience</small>
+                <small class="d-block"><i class="fa-solid fa-check text-success me-2"></i>10+ Successful Projects Delivered</small>
+              </div>
+            </div>
+            <div class="image col-lg-6">
+              <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Developer workspace" class="img-fluid rounded-3 shadow-lg animate-fade-in">                
+            </div>
+
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-5">
+        <div class="container">
+          <h2 class="section-title text-center">About Me</h2>
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+              <img src="img/myphoto.jpeg" alt="Developer portrait"  class="img-fluid rounded-3 shadow-lg">
+            </div>
+            <!-- <div class="image col-lg-6 mb-4 mb-lg-0">
+              <i class="fa-brands fa-html5 html"></i>
+              <i class="fa-brands fa-css3-alt css"></i>
+              <i class="fa-brands fa-bootstrap bootstrap"></i>
+              <i class="fa-brands fa-wordpress wordpress"></i>
+              <img src="img/django.png" class="django" alt="image not found">
+              <img src="img/myphoto.jpeg" alt="Developer portrait"  class="img-fluid rounded-3 shadow-lg">
+              
+            </div> -->
+            <div class="col-lg-6">
+              <h3 class="mb-4">Innovating with Code, Solving with Logic</h3>
+              <p class="mb-4">I am a passionate full-stack developer with expertise in web technologies, database design, and artificial intelligence. My journey in software development combines technical proficiency with creative problem-solving.</p>
+              <p class="mb-4">I specialize in building responsive web applications, designing efficient database systems, and implementing machine learning solutions. My approach focuses on writing clean, maintainable code that solves real-world problems.</p>
+              
+              <div class="d-flex mb-3">
+                <div class="me-4">
+                  <h4 class="text-primary">4</h4>
+                  <p>Years Experience</p>
+                </div>
+                <div class="me-4">
+                  <h4 class="text-primary">10+</h4>
+                  <p>Projects Completed</p>
+                </div>
+                <div>
+                  <h4 class="text-primary">100%</h4>
+                  <p>Client Satisfaction</p>
+                </div>
+              </div>
+              
+              <a href="docs/My_Resume.pdf" download="" class="btn btn-primary">
+                <i class="fa-solid fa-download me-2"></i>Download Resume
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-5">
+        <div class="container">
+          <h2 class="section-title text-center">Technical Skills</h2>
+          <p class="text-center mb-5 text-muted">Technologies and tools I work with</p>
+          
+          <div class="row g-4">
+            <!-- Programming Languages -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-primary">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <h4 class="mb-3">Programming Languages</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">C#</span>
+                    <span class="skill-badge">JavaScript</span>
+                  </div>
+                  <p class="text-muted mt-3">Strong foundation in multiple programming paradigms and problem-solving approaches.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Web Development -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-success">
+                    <i class="fa-solid fa-globe"></i>
+                  </div>
+                  <h4 class="mb-3">Web Development</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">Django</span>
+                    <span class="skill-badge">HTML5</span>
+                    <span class="skill-badge">CSS3</span>
+                    <span class="skill-badge">Bootstrap</span>
+                    <span class="skill-badge">WordPress</span>
+                  </div>
+                  <p class="text-muted mt-3">Building responsive, accessible, and performant web applications.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Databases -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-warning">
+                    <i class="fa-solid fa-database"></i>
+                  </div>
+                  <h4 class="mb-3">Databases</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">Database Design</span>
+                  </div>
+                  <p class="text-muted mt-3">Designing efficient, scalable database systems and writing optimized queries.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- DevOps & Tools -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-danger">
+                    <i class="fa-solid fa-tools"></i>
+                  </div>
+                  <h4 class="mb-3">DevOps & Tools</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">Linux</span>
+                    <span class="skill-badge">Computer Networking</span>
+                    <span class="skill-badge">Microsoft Office</span>
+                  </div>
+                  <p class="text-muted mt-3">Version control, system administration, and productivity tools mastery.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- AI & ML -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-info">
+                    <i class="fa-solid fa-brain"></i>
+                  </div>
+                  <h4 class="mb-3">AI & Machine Learning</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">Machine Learning</span>
+                    <span class="skill-badge">Artificial Intelligence</span>
+                    <span class="skill-badge">Data Science</span>
+                  </div>
+                  <p class="text-muted mt-3">Developing intelligent systems and predictive models.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Software Engineering -->
+            <div class="col-md-6 col-lg-4">
+              <div class="card service-card h-100">
+                <div class="card-body text-center">
+                  <div class="service-icon bg-secondary">
+                    <i class="fa-solid fa-cogs"></i>
+                  </div>
+                  <h4 class="mb-3">Software Engineering</h4>
+                  <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">Software Engineering Practices</span>
+                    <span class="skill-badge">Operating Systems</span>
+                    <span class="skill-badge">System Design</span>
+                  </div>
+                  <p class="text-muted mt-3">Following best practices and designing robust software architectures.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-5">
+        <div class="container">
+          <h2 class="section-title text-center">Featured Projects</h2>
+          <p class="text-center mb-5 text-muted">A selection of my recent work</p>
+          
+          <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="E-commerce Platform">
+                <div class="card-body">
+                  <h5 class="card-title">E-commerce Platform</h5>
+                  <p class="card-text text-muted">Full-featured online store built with Django, PostgreSQL, and Bootstrap.</p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="ML Analytics Dashboard">
+                <div class="card-body">
+                  <h5 class="card-title">ML Analytics Dashboard</h5>
+                  <p class="card-text text-muted">Interactive dashboard for machine learning model visualization and analysis.</p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-info">Python</span>
+                    <span class="badge bg-warning">JavaScript</span>
+                    <span class="badge bg-danger">Machine Learning</span>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Inventory Management System">
+                <div class="card-body">
+                  <h5 class="card-title">Inventory Management System</h5>
+                  <p class="card-text text-muted">Enterprise system for inventory tracking with real-time analytics.</p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Java</span>
+                    <span class="badge bg-secondary">MySQL</span>
+                    <span class="badge bg-success">HTML/CSS</span>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-5">
+        <div class="container">
+          <h2 class="section-title text-center mb-5">Professional Roadmap</h2>
+
+          <div class="roadmap d-flex justify-content-between align-items-start flex-wrap">
+            
+            <!-- Step 1: Student -->
+            <div class="roadmap-item text-center flex-fill px-3">
+              <div class="roadmap-date">2021 - 2024</div>
+              <div class="roadmap-content">
+                <h5>Student</h5>
+                <a  href="https://www.uwc.ac.za/" target="_blank" class="text-muted">Univerity of the Western Cape</a>
+                <p>
+                  During my studies I immersed myself in the fundamentals of computer science and software engineering. 
+                  I gained hands‑on experience building responsive websites, experimenting with modern front‑end frameworks, 
+                  and applying object‑oriented programming principles in real projects. 
+                  I collaborated on team assignments that introduced me to agile methodologies, version control, and the importance of clean, maintainable code. 
+                  This period laid the foundation for my transition into professional development roles.
+                </p>
+                <!-- Projects -->
+                <div class="mt-3 text-start">
+                  <h6 class="fw-bold">Projects:</h6>
+                  <p class="text-muted mb-1">Portfolio Builder</p>
+                  <ul class="text-muted small">
+                    <li>Created a personal portfolio site to showcase academic projects and skills.</li>
+                    <li>Used Bootstrap and custom CSS for layout and responsiveness.</li>
+                    <li>Integrated GitHub Pages for deployment and version control.</li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="roadmap-connector flex-fill text-center">
+              <span class="roadmap-line"></span>
+            </div>
+
+            <!-- Step 2: Web Developer -->
+            <div class="roadmap-item text-center flex-fill px-3">
+              <div class="roadmap-date">2023 - 2024</div>
+              <div class="roadmap-content">
+                  <h5>Web Developer</h5>
+                  <a  href="https://webmaxsolution.com/" target="_blank" class="text-muted">Webmax Solutions Pty, Ltd</a>
+                  <p>
+                    At Webmax Solutions I stepped into a full development role, taking ownership of both back‑end and front‑end tasks. 
+                    I engineered scalable Django applications and paired them with dynamic React interfaces to deliver seamless user experiences. 
+                    My responsibilities included setting up CI/CD pipelines, optimizing database queries, and improving system performance by over 40%. 
+                    I worked closely with designers and product managers to translate business requirements into technical solutions, 
+                    and contributed to a culture of rapid iteration and continuous improvement.
+                  </p>
+                  <!-- Projects -->
+                  <div class="mt-3 text-start">
+                        <h6 class="fw-bold">Projects:</h6>
+                        <p class="text-muted mb-1">Tutor King Platform</p>
+                        <ul class="text-muted small">
+                          <li>Built a learning management system with tutor dashboards and student progress tracking.</li>
+                          <li>Integrated Stripe for payment processing and role-based access control.</li>
+                          <li><strong>Tech Stack:</strong> Django, PostgreSQL, Bootstrap, Git, GitHub Actions, Docker</li>
+                        </ul>
+                  </div>
+
+                </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="roadmap-connector flex-fill text-center">
+              <span class="roadmap-line"></span>
+            </div>
+
+            <!-- Step 3: Backend Developer -->
+            <div class="roadmap-item text-center flex-fill px-3">
+              <div class="roadmap-date">2022 - Present</div>
+              <div class="roadmap-content">
+                <h5>Full Stack Software Engineer</h5>
+                <a  href="https://ontec.co.za/" target="_blank" class="text-muted">Ontec Systems Pty, Ltd</a>
+                <p>
+                  At Ontec I focus on designing and scaling backend systems, developing RESTful APIs, and architecting database solutions 
+                  that support millions of users. My role combines technical leadership with hands‑on coding, ensuring that business requirements 
+                  are translated into robust, maintainable software.
+                </p>
+
+                <!-- Responsibilities -->
+                <div class="mt-3 text-start">
+                  <h6 class="fw-bold">Responsibilities:</h6>
+                  <ul class="text-muted small">
+                    <li>Implemented Object Oriented Concepts during development.</li>
+                    <li>Defined technology stack, workflow, and coding standards.</li>
+                    <li>Collaborated with professionals to determine requirements.</li>
+                    <li>Designed, developed, and executed solutions to address business issues.</li>
+                    <li>Provided architectural blueprints and technical leadership.</li>
+                    <li>Evaluated and recommended tools, technologies, and processes.</li>
+                  </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="mt-3 text-start">
+                  <h6 class="fw-bold">Projects:</h6>
+                  <p class="text-muted mb-1">Ontec Portal</p>
+                  <ul class="text-muted small">
+                    <li>Designed UI with nested layouts for multiple applications.</li>
+                    <li>Created responsive UI using CSS media queries.</li>
+                    <li>Developed MVC Web API and MVC Core Web Application with business rules.</li>
+                    <li><strong>Tech & Tools:</strong> MVC Core, RESTful API, JSON, Identity Server, Bootstrap, CSS, Razor, SQL, TFS, Visual Studio 2017, MS SQL Server 2016</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4">
+              <div class="stat-item">
+                <h3>10+</h3>
+                <p>Projects Completed</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+              <div class="stat-item">
+                <h3>2</h3>
+                <p>Happy Clients</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+              <div class="stat-item">
+                <h3>4</h3>
+                <p>Technologies Mastered</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+              <div class="stat-item">
+                <h3>4</h3>
+                <p>Years Experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="section-title text-center">Get In Touch</h2>
+              <p class="text-center mb-5 text-muted">Have a project in mind? Let's discuss how we can work together.</p>
+              
+              <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                  <form method="GET" action="mailto:bhekumuzithabethe2019@gmail.com" enctype="text/plain">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                      </div>
+                      <div class="col-md-6">
+                        <select name="project_type" class="form-control" required>
+                          <option value="">Project Type</option>
+                          <option>Web Development</option>
+                          <option>AI/ML Project</option>
+                          <option>Database Design</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                      <div class="col-12">
+                        <textarea name="message" class="form-control" rows="4" placeholder="Tell me about your project..." required></textarea>
+                      </div>
+                      <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                          <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
+              <div class="row mt-5 text-center">
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-envelope fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5>Email</h5>
+                      <p class="mb-0">bhekumuzithabethe2019@gmail.com</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-phone fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5>Phone</h5>
+                      <p class="mb-0">+27 (63) 288 6230</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-location-dot fa-2x text-primary me-3"></i>
+                    <div>
+                      <h5>Location</h5>
+                      <p class="mb-0">Belhar, South Africa</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <h4 class="mb-3">Bhekumuzi Thabethe</h4>
+          <p>Full stack developer specializing in web technologies, AI integration, and database design. Passionate about creating efficient, scalable solutions.</p>
+          <div class="social-links">
+            <a href="https://github.com/bhekumuzithabethe" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/bhekumuzi-siyabonga-thabethe-540023292/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h4 class="mb-3">Quick Links</h4>
+          <ul class="list-unstyled">
+            <li><a href="#home" class="mb-2 d-inline-block">Home</a></li>
+            <li><a href="#skills" class="mb-2 d-inline-block">Skills</a></li>
+            <li><a href="#projects" class="mb-2 d-inline-block">Projects</a></li>
+            <li><a href="#contact" class="mb-2 d-inline-block">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <h4 class="mb-3">Services</h4>
+          <ul class="list-unstyled">
+            <li><i class="fa-solid fa-check text-primary me-2"></i>Web Development</li>
+            <li><i class="fa-solid fa-check text-primary me-2"></i>Database Design</li>
+            <li><i class="fa-solid fa-check text-primary me-2"></i>AI/ML Solutions</li>
+            <li><i class="fa-solid fa-check text-primary me-2"></i>Consulting</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="text-center">
+        <p class="mb-0">&copy; <script>document.write(new Date().getFullYear())</script> Bhekumuzi Thabethe. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <button id="backToTop">↑</button>
+
+</body>
+
+<script src="js/darkmode.js"></script>
+<script src="js/backToTop.js"></script>
+<script src="js/custome.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>
