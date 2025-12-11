@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bhekumuzi Thabethe | Full Stack Developer</title>
   <link rel="shortcut icon" href=""img/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="css/custome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custome.css">
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-dark btn-primary sticky-top justify-content-between">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
         <i class="fas fa-code fa-2x me-2 text-primary"></i>
         <span class="fw-bold fs-4">Bhekumuzi Thabethe</span>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" id="menu" data-bs-toggle="collapse" onclick="openSidebar()">
+        <span class="navbar-toggler-icon" ></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -43,6 +43,64 @@
       </div>
     </div>
   </nav>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+      <h5 class="mb-0 text-primary fw-bold">Navigation</h5>
+      <button class="btn btn-sm btn-close btn-outline-secondary" onclick="closeSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#home" onclick="closeSidebar()">
+          <i class="fas fa-home me-3"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#about" onclick="closeSidebar()">
+          <i class="fas fa-user me-3"></i>
+          <span>About</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#skills" onclick="closeSidebar()">
+          <i class="fas fa-code me-3"></i>
+          <span>Skills</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#projects" onclick="closeSidebar()">
+          <i class="fas fa-project-diagram me-3"></i>
+          <span>Projects</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#experience" onclick="closeSidebar()">
+          <i class="fas fa-briefcase me-3"></i>
+          <span>Experience</span>
+        </a>
+      </li>
+      <li class="sidebar-item">
+        <a class="sidebar-link d-flex align-items-center" href="#contact" onclick="closeSidebar()">
+          <i class="fas fa-envelope me-3"></i>
+          <span>Contact</span>
+        </a>
+      </li>
+      <li class="sidebar-item mt-4">
+        <button class="sidebar-theme-btn d-flex align-items-center w-100" onclick="toggleTheme()">
+          <i id="theme-icon-sidebar" class="fas fa-moon me-3"></i>
+          <span>Toggle Theme</span>
+        </button>
+      </li>
+    </ul>
+    
+    <div class="sidebar-footer p-3 mt-auto">
+      <div class="text-center">
+        <small class="text-muted">© 2024 Bhekumuzi Thabethe</small>
+      </div>
+    </div>
+  </aside>
 
   <main>
     
@@ -73,51 +131,49 @@
 
       </section>
 
-      <!-- About Section -->
-      <section id="about" class="py-5">
-        <div class="container">
-          <h2 class="section-title text-center">About Me</h2>
-          <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <img src="img/myphoto.jpeg" alt="Developer portrait"  class="img-fluid rounded-3 shadow-lg">
-            </div>
-            <!-- <div class="image col-lg-6 mb-4 mb-lg-0">
-              <i class="fa-brands fa-html5 html"></i>
-              <i class="fa-brands fa-css3-alt css"></i>
-              <i class="fa-brands fa-bootstrap bootstrap"></i>
-              <i class="fa-brands fa-wordpress wordpress"></i>
-              <img src="img/django.png" class="django" alt="image not found">
-              <img src="img/myphoto.jpeg" alt="Developer portrait"  class="img-fluid rounded-3 shadow-lg">
-              
-            </div> -->
-            <div class="col-lg-6">
-              <h3 class="mb-4">Innovating with Code, Solving with Logic</h3>
-              <p class="mb-4">I am a passionate full-stack developer with expertise in web technologies, database design, and artificial intelligence. My journey in software development combines technical proficiency with creative problem-solving.</p>
-              <p class="mb-4">I specialize in building responsive web applications, designing efficient database systems, and implementing machine learning solutions. My approach focuses on writing clean, maintainable code that solves real-world problems.</p>
-              
-              <div class="d-flex mb-3">
-                <div class="me-4">
-                  <h4 class="text-primary">4</h4>
-                  <p>Years Experience</p>
-                </div>
-                <div class="me-4">
-                  <h4 class="text-primary">10+</h4>
-                  <p>Projects Completed</p>
-                </div>
-                <div>
-                  <h4 class="text-primary">100%</h4>
-                  <p>Client Satisfaction</p>
-                </div>
-              </div>
-              
-              <a href="docs/My_Resume.pdf" download="" class="btn btn-primary">
-                <i class="fa-solid fa-download me-2"></i>Download Resume
-              </a>
-            </div>
+     <section id="about" class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">About Me</h2>
+    <div class="row align-items-center">
+      <!-- Left: Image -->
+      <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+        <img src="img/myphoto.jpeg" alt="Developer portrait" class="img-fluid rounded-3 shadow-lg animate-fade-in" style="max-height: 500px; object-fit: cover;">
+      </div>
+
+      <!-- Right: Text -->
+      <div class="col-lg-6 d-flex flex-column justify-content-center animate-fade-in">
+        <h3 class="mb-4 text-primary">Innovating with Code, Solving with Logic</h3>
+        <p class="text-muted mb-3">
+          I am a passionate full-stack developer with expertise in web technologies, database design, and artificial intelligence. My journey in software development combines technical proficiency with creative problem-solving.
+        </p>
+        <p class="text-muted mb-4">
+          I specialize in building responsive web applications, designing efficient database systems, and implementing machine learning solutions. My approach focuses on writing clean, maintainable code that solves real-world problems.
+        </p>
+
+        <!-- Stats -->
+        <div class="d-flex justify-content-between text-center mb-4">
+          <div>
+            <h4 class="text-primary">4</h4>
+            <p class="text-muted">Years Experience</p>
+          </div>
+          <div>
+            <h4 class="text-primary">10+</h4>
+            <p class="text-muted">Projects Completed</p>
+          </div>
+          <div>
+            <h4 class="text-primary">100%</h4>
+            <p class="text-muted">Client Satisfaction</p>
           </div>
         </div>
-      </section>
 
+        <!-- Resume Button -->
+        <a href="docs/My_Resume.pdf" download class="btn btn-primary w-100">
+          <i class="fa-solid fa-download me-2"></i>Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
       <!-- Skills Section -->
       <section id="skills" class="py-5">
         <div class="container">
@@ -248,55 +304,169 @@
           <p class="text-center mb-5 text-muted">A selection of my recent work</p>
           
           <div class="row g-4">
+
             <div class="col-lg-4 col-md-6">
               <div class="card project-card">
-                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="E-commerce Platform">
+                <img src="img/tutorKing.png" class="card-img-top" alt="E-commerce Platform">
                 <div class="card-body">
-                  <h5 class="card-title">E-commerce Platform</h5>
+                  <h5 class="card-title">Tutor King E-Learning Platform</h5>
                   <p class="card-text text-muted">Full-featured online store built with Django, PostgreSQL, and Bootstrap.</p>
                   <div class="tech-stack mb-3">
                     <span class="badge bg-primary">Django</span>
                     <span class="badge bg-secondary">PostgreSQL</span>
                     <span class="badge bg-success">Bootstrap</span>
-                  </div>
-                  <a href="#" class="btn btn-outline-primary">View Details</a>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-lg-4 col-md-6">
-              <div class="card project-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="ML Analytics Dashboard">
-                <div class="card-body">
-                  <h5 class="card-title">ML Analytics Dashboard</h5>
-                  <p class="card-text text-muted">Interactive dashboard for machine learning model visualization and analysis.</p>
-                  <div class="tech-stack mb-3">
-                    <span class="badge bg-info">Python</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
                     <span class="badge bg-warning">JavaScript</span>
-                    <span class="badge bg-danger">Machine Learning</span>
+
                   </div>
-                  <a href="#" class="btn btn-outline-primary">View Details</a>
+                  <a href="https://tutorking-cjdud8evfkdycudw.southafricanorth-01.azurewebsites.net/" target="_blank" class="btn btn-outline-primary">Live Demo</a>
                 </div>
               </div>
             </div>
             
+            
+            
             <div class="col-lg-4 col-md-6">
               <div class="card project-card">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Inventory Management System">
+                <img src="img/teddysambu.png" class="card-img-top" alt="E-commerce Platform">
                 <div class="card-body">
-                  <h5 class="card-title">Inventory Management System</h5>
-                  <p class="card-text text-muted">Enterprise system for inventory tracking with real-time analytics.</p>
+                  <h5 class="card-title">Teddy Sambu Photography</h5>
+                  <p class="card-text text-muted">Full-Featured Online Photography Booking System Built With Django, PostgreSQL, and Bootstrap.</p>
                   <div class="tech-stack mb-3">
-                    <span class="badge bg-primary">Java</span>
-                    <span class="badge bg-secondary">MySQL</span>
-                    <span class="badge bg-success">HTML/CSS</span>
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
+                    <span class="badge bg-warning">JavaScript</span>
+
                   </div>
-                  <a href="#" class="btn btn-outline-primary">View Details</a>
+                  <a href="https://teddysambuphotographraphy.co.za/" target="_blank" class="btn btn-outline-primary">Live Demo</a>
                 </div>
               </div>
             </div>
-          </div>
+            
+            <!--Github repos-->
+
+          <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="img/todo.png" class="card-img-top" alt="E-commerce Platform">
+                <div class="card-body">
+                  <h5 class="card-title">Django ToDo List</h5>
+                  <p class="card-text text-muted">
+                    This is a django ToDo list app, whereby a users can create,
+                 read, update and delete tasks they need to do. The project is
+                  built using Django 4, HTML 5, CSS 3, and Bootstrap 5 with a Bootswatch theme.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
+                    <span class="badge bg-warning">JavaScript</span>
+
+                  </div>
+                  <a href="https://github.com/bhekumuzithabethe/django-ToDo-list" target="_blank" class="btn btn-outline-primary">GitHub Repo</a>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="img/employeemanagement.png" class="card-img-top" alt="E-commerce Platform">
+                <div class="card-body">
+                  <h5 class="card-title">Django CRUD Operations</h5>
+                  <p class="card-text text-muted">
+                    This is an employee management system, whereby a user or an admin can create, read, 
+                update and delete employee details.
+                The project is built using Django 4, HTML 5, CSS 3, and Bootstrap 5 with a Bootswatch theme.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
+                    <span class="badge bg-warning">JavaScript</span>
+
+                  </div>
+                  <a href="https://github.com/bhekumuzithabethe/django-crud-operations" target="_blank" class="btn btn-outline-primary">GitHub Repo</a>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="img/resume.png" class="card-img-top" alt="E-commerce Platform">
+                <div class="card-body">
+                  <h5 class="card-title">Django Resume Builder</h5>
+                  <p class="card-text text-muted">
+                  Ispani is a resume builder project, whereby a user can create a resume,
+                 update resume details and download the resume they created. THis project 
+                 only allowes registered users to create resumes, therefore if you are not a 
+                 registered user you won't be able to create a resume in the platform. The project 
+                 is built using Django 4, HTML 5, CSS 3, and Bootstrap 5 with a Bootswatch theme.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
+                    <span class="badge bg-warning">JavaScript</span>
+
+                  </div>
+                  <a href="https://github.com/bhekumuzithabethe/django-resume-builder" target="_blank" class="btn btn-outline-primary">GitHub Repo</a>
+
+                </div>
+              </div>
+            </div>
+
+          <div class="col-lg-4 col-md-6">
+              <div class="card project-card">
+                <img src="img/bank.png" class="card-img-top" alt="E-commerce Platform">
+                <div class="card-body">
+                  <h5 class="card-title">Django Banking App</h5>
+                  <p class="card-text text-muted">
+                    Thabethe banking is a banking project, whereby a consultant can create clients,bank accounts, 
+                and client banking cards.Consultants can only be registerd or created by the bank manager, and
+                 the bank manager is able to do everything the bank consultant can do.User's or clients can view 
+                 their account transactions,account balance and account number. Clients can make withdrawalls using
+                  their card number and the account the client wants to withdraw money from. Transfers can only be
+                   made if a user has multiple bank accounts with us, if a client wishes to send or transfer money
+                    to someone they can make use of the pay tab to pay an account registered in our database/bank. 
+                    Clients are also able to make deposits given an account number they wish to deposit into.
+                  And this is not a real bank it is just the software part of a banking system I have developed.
+                  </p>
+                  <div class="tech-stack mb-3">
+                    <span class="badge bg-primary">Django</span>
+                    <span class="badge bg-secondary">PostgreSQL</span>
+                    <span class="badge bg-success">Bootstrap</span>
+                    <span class="badge bg-danger">HTML</span>
+                    <span class="badge text-dark btn-outline-primary">CSS</span>
+                    <span class="badge bg-warning">JavaScript</span>
+
+                  </div>
+                  <a href="https://github.com/bhekumuzithabethe/django-banking-app" target="_blank" class="btn btn-outline-primary">GitHub Repo</a>
+              </div>
+              </div>
+            </div>
+
+            
         </div>
+        <script>
+          document.querySelectorAll('.card-text').forEach(text => {
+          text.addEventListener('click', () => {
+              text.classList.toggle('expanded');
+            });
+          });
+        </script>
       </section>
 
       <!-- Experience Section -->
@@ -320,7 +490,7 @@
                   This period laid the foundation for my transition into professional development roles.
                 </p>
                 <!-- Projects -->
-                <div class="mt-3 text-start">
+                <div class="mt-3 ms-auto text-start">
                   <h6 class="fw-bold">Projects:</h6>
                   <p class="text-muted mb-1">Portfolio Builder</p>
                   <ul class="text-muted small">
@@ -340,7 +510,7 @@
 
             <!-- Step 2: Web Developer -->
             <div class="roadmap-item text-center flex-fill px-3">
-              <div class="roadmap-date">2023 - 2024</div>
+              <div class="roadmap-date">2024 - 2025</div>
               <div class="roadmap-content">
                   <h5>Web Developer</h5>
                   <a  href="https://webmaxsolution.com/" target="_blank" class="text-muted">Webmax Solutions Pty, Ltd</a>
@@ -352,7 +522,7 @@
                     and contributed to a culture of rapid iteration and continuous improvement.
                   </p>
                   <!-- Projects -->
-                  <div class="mt-3 text-start">
+                  <div class="mt-3 ms-auto text-start">
                         <h6 class="fw-bold">Projects:</h6>
                         <p class="text-muted mb-1">Tutor King Platform</p>
                         <ul class="text-muted small">
@@ -372,7 +542,7 @@
 
             <!-- Step 3: Backend Developer -->
             <div class="roadmap-item text-center flex-fill px-3">
-              <div class="roadmap-date">2022 - Present</div>
+              <div class="roadmap-date">2025 - Present</div>
               <div class="roadmap-content">
                 <h5>Full Stack Software Engineer</h5>
                 <a  href="https://ontec.co.za/" target="_blank" class="text-muted">Ontec Systems Pty, Ltd</a>
@@ -383,7 +553,7 @@
                 </p>
 
                 <!-- Responsibilities -->
-                <div class="mt-3 text-start">
+                <div class="mt-3 ms-auto text-start">
                   <h6 class="fw-bold">Responsibilities:</h6>
                   <ul class="text-muted small">
                     <li>Implemented Object Oriented Concepts during development.</li>
@@ -396,14 +566,14 @@
                 </div>
 
                 <!-- Projects -->
-                <div class="mt-3 text-start">
+                <div class="mt-3 ms-auto text-start">
                   <h6 class="fw-bold">Projects:</h6>
                   <p class="text-muted mb-1">Ontec Portal</p>
                   <ul class="text-muted small">
                     <li>Designed UI with nested layouts for multiple applications.</li>
                     <li>Created responsive UI using CSS media queries.</li>
                     <li>Developed MVC Web API and MVC Core Web Application with business rules.</li>
-                    <li><strong>Tech & Tools:</strong> MVC Core, RESTful API, JSON, Identity Server, Bootstrap, CSS, Razor, SQL, TFS, Visual Studio 2017, MS SQL Server 2016</li>
+                    <li><strong>Tech & Tools:</strong> MVC Core, RESTful API, JSON, Identity Server, Bootstrap, CSS, Razor, SQL, TFS, Visual Studio, MS SQL Server</li>
                   </ul>
                 </div>
               </div>
@@ -538,10 +708,13 @@
         <div class="col-lg-4 mb-4">
           <h4 class="mb-3">Quick Links</h4>
           <ul class="list-unstyled">
+            <div class="quick-links">
             <li><a href="#home" class="mb-2 d-inline-block">Home</a></li>
             <li><a href="#skills" class="mb-2 d-inline-block">Skills</a></li>
             <li><a href="#projects" class="mb-2 d-inline-block">Projects</a></li>
             <li><a href="#contact" class="mb-2 d-inline-block">Contact</a></li>
+            </div>
+           
           </ul>
         </div>
         <div class="col-lg-4 mb-4">
@@ -561,12 +734,15 @@
     </div>
   </footer>
   
+  <!-- Overlay div used again for layering effects -->
+  <div id="overlay" class="overlay"></div>
+
   <button id="backToTop">↑</button>
 
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/darkmode.js"></script>
 <script src="js/backToTop.js"></script>
 <script src="js/custome.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </html>
