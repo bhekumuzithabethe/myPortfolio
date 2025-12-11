@@ -778,3 +778,7 @@ a[href^="#"] {
     background-color: transparent;
   }
 }
+
+.sidebar{
+  overflow: hidden;
+}
