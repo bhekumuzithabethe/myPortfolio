@@ -90,35 +90,38 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark btn-primary sticky-top justify-content-between">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <i class="fas fa-code fa-2x me-2 text-primary" style="color: white !important;"></i>
-        <span class="fw-bold fs-4">Bhekumuzi Thabethe</span>
-      </a>
-
+  <nav class="navbar navbar-expand-lg navbar-dark btn-primary sticky-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    
+    <!-- Brand and Icon -->
+    <div class="d-flex justify-content-between">
+        <i class="fas fa-code fa-2x me-2 mt-2 text-primary" style="color: white !important;"></i>
+      <a class="navbar-brand fw-bold fs-4" href="#">Bhekumuzi Thabethe</a>
+        <!-- Menu Button -->
       <button class="navbar-toggler" type="button" onclick="openSidebar()">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item">
-            <button class="btn btn-outline-light ms-2" onclick="toggleTheme()" title="Toggle Theme">
-              <i id="theme-icon" class="fa-solid fa-moon"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
     </div>
-  </nav>
-  
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light ms-2" onclick="toggleTheme()" title="Toggle Theme">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
       <h5 class="mb-0 text-primary fw-bold">Navigation</h5>
