@@ -234,7 +234,7 @@ html {
 }
 
 /* Project Cards */
-.project-card {
+/* .project-card {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -262,8 +262,200 @@ html {
   object-fit: cover;
   width: 100%;
 }
+ *//* Fix project card display */
+.project-item {
+    transition: all 0.3s ease;
+    display: block !important;
+}
 
+.project-item.hidden {
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Fix card text expansion */
 .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.card-text.expanded {
+    -webkit-line-clamp: unset;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+/* Fix sidebar display on mobile */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: none !important;
+    }
+    
+    .navbar-toggler {
+        display: block !important;
+    }
+    
+    .sidebar {
+        display: flex !important;
+        visibility: hidden;
+        left: -100%;
+    }
+    
+    .sidebar.active {
+        visibility: visible;
+        left: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: flex !important;
+    }
+    
+    .navbar-toggler {
+        display: none !important;
+    }
+}
+
+/* Fix project overlay */
+.project-overlay .btn-light {
+    color: #333;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.project-overlay .btn-light:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* Fix filter buttons active state */
+.filter-buttons .btn.active {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+    color: white !important;
+}
+
+/* Fix navbar toggler on mobile */
+.navbar-toggler:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Fix stats section numbers alignment */
+.stat-item h3 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Fix footer links spacing */
+.quick-links li {
+    margin-bottom: 0.5rem;
+}
+
+.quick-links a {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.quick-links a:hover {
+    transform: translateX(5px);
+}
+
+/* Fix contact form */
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb), 0.25);
+}
+
+/* Fix hero section image */
+.hero-section .image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Fix responsive issues */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+    
+    .hero-section .image {
+        margin-top: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .roadmap-item {
+        padding: 1rem;
+    }
+}
+
+/* Fix modal display */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color);
+}
+
+.modal-footer {
+    border-top-color: var(--border-color);
+}
+
+/* Fix badge colors in dark mode */
+[data-bs-theme="dark"] .badge.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-success {
+    background-color: var(--success-color) !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-info {
+    background-color: var(--accent-color) !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-dark {
+    background-color: #495057 !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-danger {
+    background-color: #ff6b6b !important;
+}
+
+[data-bs-theme="dark"] .badge.bg-warning {
+    background-color: #ffd43b !important;
+    color: #212529 !important;
+}
+
+ .card-text {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
