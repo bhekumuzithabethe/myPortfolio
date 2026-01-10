@@ -1,0 +1,63 @@
+{% extends "administration/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    Manage Tutors  {# Sets the page title dynamically using the selected month #}
+{% endblock page_title %}
+
+{% block main_content %}
+    {# Loop through Django messages for feedback alerts #}
+    {% for message in messages %}
+         {% if message.tags == "error" %}  {# Ensure 'error' is in quotes to avoid undefined variable error #}
+            <h6 class="alert alert-danger m-4">{{ message }}</h6>
+        {% else %}
+            <h6 class="alert alert-success m-4">{{ message }}</h6>
+        {% endif %}
+    {% endfor %}
+
+{% if tutors %}
+        <div class="row justify-content-center mt-2">
+        <div class="col-6 col-md-12">
+            <div class="card bg-body-tertiary text-body m-4 shadow-sm rounded-4">
+                <div class="card-header bg-body-tertiary text-body fw-semibold my-3 mx-2 rounded-3">
+                        Manage Tutors
+                    </div>
+                    <div class="card-body table-responsive">
+
+                        {# Payment records table #}
+                        <table class="table table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Surname</th>
+                                    <th scope="col">Subject 1</th>
+                                    <th scope="col">Subject 2</th>
+                                    <th scope="col">Subject 3</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for tutor in tutors %}
+                                <tr>
+                                    <td>{{ tutor.id }}</td>
+                                    <td>{{ tutor.first_name }}</td>
+                                    <td>{{ tutor.last_name }}</td>
+                                    <td>{{ tutor.subject1 }}</td>
+                                    <td>{{ tutor.subject2 }}</td>
+                                    <td>{{ tutor.subject3 }}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {# Alert when no payment data is available #}
+        <h4 class="alert alert-primary mt-2">No user records yet.</h4>
+    {% endif %}
+{% endblock main_content %}

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" id="theme-toggle">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% comment %} Page title block (child templates can override this) {% endcomment %}
+    <title>Tutor King | Admin | {% block page_title %}Home{% endblock page_title %}</title>
+
+    {% comment %} Bootstrap CSS from static files {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    {% comment %} Custom CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {% comment %} Font Awesome CDN for icons {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    {% comment %} Favicon {% endcomment %}
+    <link rel="shortcut icon" href="{% static "img/logo/logo.jpg" %}" type="image/x-icon">
+</head>
+<body id="theme-toggle">
+{% block body %}
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary" id="navbar" data-bs-theme="dark">
+        <div class="container-fluid">
+            
+            {% comment %} Brand logo / name with optional block override {% endcomment %}
+            {% block icon_url_redirect %}
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'administrator' %}">
+                    <img src="{% static 'img/logo/logo.jpg' %}" alt="Tutor King Logo" width="50" height="50" class="rounded-circle me-2">
+                    <span class="fw-bold fs-4">Tutor King</span>
+                </a>
+            {% endblock icon_url_redirect %}
+            
+            <!-- Mobile menu toggle -->
+            <button class="navbar-toggler" type="button" id="menu" onclick="openSidebar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav ms-auto">
+                    {% block navbar_right %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="toggleTheme()">
+                                <i id="theme-icon" class="fa-solid fa-moon fa-lg"></i>
+                            </a>
+                           
+                        </li>
+
+                        <!-- User dropdown menu -->
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-user fa-lg"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="{% url "update-profile" %}">Profile</a>
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'dologout' %}">Logout</a>
+                            </div>
+                        </li>
+                        
+                    {% endblock navbar_right %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% comment %} Sidebar include (adjust path as needed) {% endcomment %}
+    {% include 'administration/sidebar.html' %}
+
+    <!-- Main content -->
+    <main class="container-fluid">
+        {% block main_content %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <h5 class="alert alert-danger m-4">{{ message }}</h5>
+                {% else %}
+                    <h5 class="alert alert-primary m-4">{{ message }}</h5>
+                {% endif %}
+            {% endfor %}
+        {% endblock main_content %}
+    </main>
+
+{% endblock body %}
+
+<!-- Footer -->
+<footer class="justify-content-center mt-auto">
+    <span class="text-center">
+        &copy; <script>document.write(new Date().getFullYear())</script> Tutor King | All rights reserved.
+    </span>
+</footer>
+
+<!-- Overlay for sidebar or modals -->
+<div id="overlay" class="overlay"></div>
+
+<!-- Custom JS -->
+<script src="{% static 'js/custome.js' %}"></script>
+
+<script src="{% static "js/darkmode.js" %}"></script>
+
+<!-- Bootstrap JS Bundle CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+/* Define CSS variables */
+:root {
+  --navbar-height: 70px;
+  --sidebar-width: 300px;
+
+  --color-bg: #fff;
+  --color-text: #333;
+  --color-hover-bg: #f0f0f0;
+  --color-hover-text: #007bff;
+  --color-active-bg: #007bff;
+  --color-active-text: white;
+  --color-overlay: rgba(0, 0, 0, 0.3);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  --transition-speed: 0.3s;
+  --border-radius: 4px;
+  --padding-base: 1em;
+  --padding-link: 0.75em 1em;
+}
+
+/* Dark mode overrides */
+html[data-bs-theme="dark"] {
+  --color-bg: #121212;
+  --color-text: #e0e0e0;
+  --color-hover-bg: #1e1e1e;
+  --color-hover-text: #90caf9;
+  --color-active-bg: #2196f3;
+  --color-active-text: #ffffff;
+  --color-overlay: rgba(255, 255, 255, 0.1);
+  --color-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Reset default styles and enable smooth scrolling */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Grid-based page layout */
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "sidebar footer";
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Basic element styling */
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--color-hover-text);
+}
+
+/* Sticky navbar at top */
+#navbar {
+  grid-area: navbar;
+  top: 0;
+  position: sticky;
+  z-index: 1040;
+}
+
+/* Main content area */
+main {
+  grid-area: main;
+  z-index: 1;
+  top: 40px;
+}
+
+/* Sidebar container */
+aside {
+  grid-area: sidebar;
+  position: sticky;
+  top: var(--navbar-height);
+  height: calc(100vh - var(--navbar-height));
+  width: 250px;
+  align-self: start;
+  padding: var(--padding-base);
+  z-index: 1030;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--color-bg);
+  box-shadow: 4px 0 12px var(--color-shadow);
+  overflow-y: auto;
+}
+
+/* Sidebar list */
+aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Sidebar list items */
+aside ul li {
+  width: 100%;
+  margin-top: 1.5em;
+}
+
+aside ul li a {
+  display: block;
+  padding: var(--padding-link);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+aside ul li a:hover {
+  background-color: var(--color-hover-bg);
+  color: var(--color-text);
+}
+
+aside ul li a.active {
+  background-color: var(--color-active-bg);
+  color: var(--color-active-text);
+}
+
+/* Mobile-only items separator */
+.mobile-only-item {
+  position: relative;
+  margin-bottom: 0 !important;
+}
+
+.mobile-only-item:first-of-type::before {
+  content: '';
+  position: absolute;
+  top: -1.5em;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-hover-bg);
+  opacity: 0.5;
+}
+
+/* Footer area */
+footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Utility class for aligning content */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overlay for sidebar when open (mobile) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-overlay);
+  z-index: 1040;
+  display: none;
+}
+.overlay.active {
+  display: block;
+}
+
+#sidebar li.active {
+  background-color: var(--color-active-bg);
+  color: var(--color-active-text);
+  font-weight: bold;
+  border-radius: var(--border-radius);
+}
+#sidebar li.active a {
+  color: var(--color-active-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "navbar"
+      "main"
+      "footer";
+  }
+
+  .sidebar-open {
+    overflow: hidden;
+  }
+
+  aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    z-index: 1050;
+    background-color: var(--color-bg);
+    transform: translateX(-100%);
+    transition: transform var(--transition-speed) ease-in-out;
+    display: block;
+    background-color: var(--color-bg);
+  }
+
+  /* Mobile-only items styling */
+  .mobile-only-item {
+    display: block !important;
+    margin-top: 2em !important;
+    padding-top: 1.5em !important;
+    border-top: 1px solid var(--color-hover-bg);
+  }
+  
+  .mobile-only-item::before {
+    display: none;
+  }
+
+  /* Hide desktop logout on mobile */
+  aside ul li.d-none.d-md-block {
+    display: none !important;
+  }
+
+  #main_content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .row {
+    justify-content: left;
+  }
+
+  .col-12,
+  .col-6 {
+    width: 100%;
+  }
+
+  .show {
+    display: block;
+    transform: translateX(0);
+    z-index: 1050;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 801px) {
+  .mobile-only-item {
+    display: none !important;
+  }
+  
+  /* Ensure desktop logout is visible */
+  aside ul li.d-none.d-md-block {
+    display: block !important;
+  }
+}
+
+/* Chatbot Styles */
+.message {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+.message-text {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sent {
+  background-color: var(--color-active-bg);
+  color: var(--color-active-text);
+  align-self: flex-end;
+}
+
+.received {
+  background-color: var(--color-hover-bg);
+  color: var(--color-text);
+  align-self: flex-start;
+}
+
+.message-form {
+  display: flex;
+  padding: 10px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.message-input {
+  border-radius: 0;
+  border-right: none;
+}
+
+.btn-send {
+  border-radius: 0;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.typing-indicator .dots {
+  display: flex;
+  gap: 5px;
+}
+
+.typing-indicator .dots span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-hover-text);
+  border-radius: 50%;
+  margin-top: 7px;
+  animation: typing 1.5s infinite ease-in-out;
+}
+
+.typing-indicator .dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+.typing-indicator .dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-indicator .dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle specific styling */
+#theme-label {
+  transition: color 0.3s ease;
+}
+
+html[data-bs-theme="dark"] #theme-label {
+  color: var(--color-text);
+}

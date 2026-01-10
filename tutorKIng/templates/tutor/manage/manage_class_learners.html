@@ -1,0 +1,115 @@
+{% extends "tutor/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %} Manage Learner's In This Class {% endblock page_title %}
+
+{% block main_content %}
+
+{# --- Display Django messages (corrected message tag comparison) --- #}
+{% for message in messages %}
+    {% if "error" in message.tags %}
+        <h6 class="alert alert-danger m-4">{{ message }}</h6>
+    {% else %}
+        <h6 class="alert alert-primary m-4">{{ message }}</h6>
+    {% endif %}
+{% endfor %}
+
+{# --- Check if Learner data exists --- #}
+{% if learners %}
+    <div class="row justify-content-center mt-2">
+        <div class="col-6 col-md-12">
+            <div class="card bg-body-tertiary text-body m-4 shadow-sm rounded-4">
+                <div class="card-header bg-body-tertiary text-body fw-semibold my-3 mx-2 rounded-3">
+                 Manage Learner's In This Class
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Learner's Full Name</th>
+                                    <th scope="col">Actions</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for class_learner in learners %}
+                                    <tr>
+                                        <td>{{ class_learner.id }}</td>
+                                        <td>
+                                            {% if class_learner.learner_1 %}
+                                                {{ class_learner.learner_1.learner.first_name }} {{ class_learner.learner_1.learner.last_name }}<br>
+                                            {% endif %}
+                                            {% if class_learner.learner_2 %}
+                                                {{ class_learner.learner_2.learner.first_name }} {{ class_learner.learner_2.learner.last_name }}<br>
+                                            {% endif %}
+                                            {% if class_learner.learner_3 %}
+                                                {{ class_learner.learner_3.learner.first_name }} {{ class_learner.learner_3.learner.last_name }}<br>
+                                            {% endif %}
+                                            {% if class_learner.learner_4 %}
+                                                {{ class_learner.learner_4.learner.first_name }} {{ class_learner.learner_4.learner.last_name }}<br>
+                                            {% endif %}
+                                            {% if class_learner.learner_5 %}
+                                                {{ class_learner.learner_5.learner.first_name }} {{ class_learner.learner_5.learner.last_name }}<br>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ class.id }}">Remove</button>
+                                            <a href="{% url "edit-class-learners" class_learner.id %}" class="btn btn-warning m-1">Edit</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal{{ class_learner.id }}" tabindex="-1" aria-labelledby="modalLabel{{ class.id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel{{ class_learner.id }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {% if class_learner.learner_1 %}
+                                                Are you sure you want to remove <strong>{{ class_learner.learner_1.learner.first_name }} {{ class_learner.learner_1.learner.last_name }}</strong> from this class?
+                                            {% endif %}
+                                            {% if class_learner.learner_2 %}
+                                                Are you sure you want to remove <strong>{{ class_learner.learner_2.learner.first_name }} {{ class_learner.learner_2.learner.last_name }}</strong> from this class?
+                                            {% endif %}
+                                            {% if class_learner.learner_3 %}
+                                                Are you sure you want to remove <strong>{{ class_learner.learner_3.learner.first_name }} {{ class_learner.learner_3.learner.last_name }}</strong> from this class?
+                                            {% endif %}
+                                            {% if class_learner.learner_4 %}
+                                                Are you sure you want to remove <strong>{{ class_learner.learner_4.learner.first_name }} {{ class_learner.learner_4.learner.last_name }}</strong> from this class?
+                                            {% endif %}
+                                            {% if class_learner.learner_5 %}
+                                                Are you sure you want to remove <strong>{{ class_learner.learner_5.learner.first_name }} {{ class_learner.learner_5.learner.last_name }}</strong> from this class?
+                                            {% endif %}
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="POST" action="{% url 'delete-class-learners' class_learner.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">Remove</button>
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h4 class="alert alert-primary m-4">No Learners in this class Yet.<a href="{% url "add-class-learners" %} "  class="btn btn-primary">Add Learner To Class</a></h4>
+{% endif %}
+
+{% endblock main_content %}

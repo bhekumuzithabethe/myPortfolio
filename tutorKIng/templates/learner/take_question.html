@@ -1,0 +1,453 @@
+{% extends "learner/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %} {{question.quiz.quiz_title}} {% endblock page_title %}
+
+{% block main_content %}
+
+{# --- Display Django messages --- #}
+{% for message in messages %}
+    {% if "error" in message.tags %}
+        <div class="alert alert-danger m-4 alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% else %}
+        <div class="alert alert-success m-4 alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+{% endfor %}
+
+{# --- Check if Quiz data exists --- #}
+{% if question %}
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10 col-xxl-8">
+                
+                {# Quiz Header Card #}
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white py-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h4 class="mb-0 fw-bold">
+                                    <i class="fas fa-question-circle me-2"></i>{{question.quiz.quiz_title}}
+                                </h4>
+                                <small class="opacity-75">Question {{question.question_number}} of {{total_questions}}</small>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <div class="d-inline-block bg-white text-dark px-3 py-2 rounded-pill">
+                                    <i class="fas fa-star text-warning me-1"></i>
+                                    <span class="fw-bold">{{question.mark}}</span> mark{{ question.mark|pluralize }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    {# Main Question Card #}
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <form method="POST" id="quizForm" action="{% url 'submit_answer' question.quiz.id question.id %}">
+                                    {% csrf_token %}
+                                    
+                                    <div class="question-header mb-4">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="badge bg-primary rounded-pill px-3 py-2 me-3">
+                                                Q{{question.question_number}}
+                                            </span>
+                                            <span class="text-muted">
+                                                <i class="far fa-clock me-1"></i>
+                                                {% if question.question_type == 1 %}
+                                                    Multiple Choice
+                                                {% elif question.question_type == 2 %}
+                                                    True/False
+                                                {% elif question.question_type == 3 %}
+                                                    Short Answer
+                                                {% elif question.question_type == 4 %}
+                                                    Essay
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                        
+                                        <h3 class="fw-bold card-text mb-4">{{question.question}}</h3>
+                                    </div>
+
+                                    {# Question type handling #}
+                                    <div class="answer-section mb-5">
+                                        {% if question.question_type == 1 %} {# Multiple Choice #}
+                                            <div class="list-group">
+
+                                                {% for answer in answers %}
+                                                    <label class="list-group-item border rounded-3 mb-2 p-3 answer-option {% if user_answer and user_answer.user_answer == answer.id|stringformat:"i" %}selected-answer{% endif %}">
+                                                        <div class="d-flex align-items-center">
+                                                            <input class="form-check-input me-3" type="radio" 
+                                                                name="answer" 
+                                                                id="answer_{{answer.id}}" 
+                                                                value="{{ answer.id }}"
+                                                                {% if user_answer and user_answer.user_answer == answer.id|stringformat:"i" %}checked{% endif %}>
+                                                            <div class="flex-grow-1">
+                                                                <span class="d-block fw-medium">{{ answer.answer }}</span>
+                                                            </div>
+                                                            <span class="option-letter ms-3 text-muted">
+                                                                {% with counter=forloop.counter %}
+                                                                    {% if counter == 1 %}A.
+                                                                    {% elif counter == 2 %}B.
+                                                                    {% elif counter == 3 %}C.
+                                                                    {% elif counter == 4 %}D.
+                                                                    {% elif counter == 5 %}E.
+                                                                    {% elif counter == 6 %}F.
+                                                                    {% elif counter == 7 %}G.
+                                                                    {% elif counter == 8 %}H.
+                                                                    {% else %}{{ counter }}.
+                                                                    {% endif %}
+                                                                {% endwith %}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                {% empty %}
+                                                    <div class="alert alert-warning">
+                                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                                        No answer options available for this question.
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                        {% elif question.question_type == 2 %} {# True/False #}
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="card border h-100 text-center p-4 rounded-3 answer-option {% if user_answer and user_answer.user_answer == "True" %}selected-answer border-success{% endif %}">
+                                                        <div class="card-body">
+                                                            <input class="form-check-input d-none" type="radio" 
+                                                                   name="answer" 
+                                                                   id="answer_true" 
+                                                                   value="True"
+                                                                   {% if user_answer and user_answer.user_answer == "True" %}checked{% endif %}>
+                                                            <div class="mb-3">
+                                                                <i class="fas fa-check-circle fa-3x text-success"></i>
+                                                            </div>
+                                                            <h5 class="fw-bold">True</h5>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="card border h-100 text-center p-4 rounded-3 answer-option {% if user_answer and user_answer.user_answer == "False" %}selected-answer border-danger{% endif %}">
+                                                        <div class="card-body">
+                                                            <input class="form-check-input d-none" type="radio" 
+                                                                   name="answer" 
+                                                                   id="answer_false" 
+                                                                   value="False"
+                                                                   {% if user_answer and user_answer.user_answer == "False" %}checked{% endif %}>
+                                                            <div class="mb-3">
+                                                                <i class="fas fa-times-circle fa-3x text-danger"></i>
+                                                            </div>
+                                                            <h5 class="fw-bold">False</h5>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
+                                        {% elif question.question_type == 3 %} {# Short Text Answer #}
+                                            <div class="card border-0 bg-light">
+                                                <div class="card-body p-4">
+                                                    <label for="answer_text" class="form-label fw-semibold mb-3">
+                                                        <i class="fas fa-edit me-2"></i>Your Answer:
+                                                    </label>
+                                                    <input type="text" 
+                                                           class="form-control form-control-lg border-2" 
+                                                           id="answer_text" 
+                                                           name="answer"
+                                                           value="{% if user_answer %}{{ user_answer.user_answer }}{% endif %}"
+                                                           placeholder="Type your answer here..."
+                                                           required>
+                                                    <div class="form-text mt-2">
+                                                        <i class="fas fa-info-circle me-1"></i>
+                                                        Please provide a concise answer
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        {% elif question.question_type == 4 %} {# Paragraph Answer #}
+                                            <div class="card border-0 bg-light">
+                                                <div class="card-body p-4">
+                                                    <label for="answer_textarea" class="form-label fw-semibold mb-3">
+                                                        <i class="fas fa-align-left me-2"></i>Your Answer:
+                                                    </label>
+                                                    <textarea class="form-control border-2" 
+                                                              id="answer_textarea" 
+                                                              name="answer" 
+                                                              rows="6"
+                                                              placeholder="Type your detailed answer here..."
+                                                              required>{% if user_answer %}{{ user_answer.user_answer }}{% endif %}</textarea>
+                                                    <div class="form-text mt-2">
+                                                        <i class="fas fa-info-circle me-1"></i>
+                                                        Please provide a detailed explanation or description
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        {% else %}
+                                            <div class="alert alert-danger">
+                                                <i class="fas fa-exclamation-circle me-2"></i>
+                                                Invalid question type.
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    {# Error message for required field #}
+                                    <div id="errorMessage" class="alert alert-danger d-none">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Please select/enter an answer before proceeding.
+                                    </div>
+
+                                    {# Navigation Buttons #}
+                                    <div class="card-footer bg-transparent border-0 p-0 mt-5">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            {% if previous_question %}
+                                                <button type="button" 
+                                                        onclick="window.location.href='{% url 'take_question' quiz_id=question.quiz.id question_id=previous_question.id %}'"
+                                                        class="btn btn-outline-primary rounded-pill px-4 py-3">
+                                                    <i class="fas fa-arrow-left me-2"></i> Previous Question
+                                                </button>
+                                            {% else %}
+                                                <div></div> {# Empty div for spacing #}
+                                            {% endif %}
+                                            
+                                            <div class="d-flex gap-3">
+                                                {% if next_question %}
+                                                    <button type="submit" 
+                                                            name="action" 
+                                                            value="next" 
+                                                            class="btn btn-primary rounded-pill px-5 py-3">
+                                                        Save & Next Question
+                                                        <i class="fas fa-arrow-right ms-2"></i>
+                                                    </button>
+                                                {% else %}
+                                                    {# Simple finish button - no modal #}
+                                                    <button type="submit"
+                                                            name="action"
+                                                            value="finish"
+                                                            class="btn btn-success rounded-pill px-5 py-3"
+                                                            onclick="return confirmFinishQuiz()">
+                                                        <i class="fas fa-check me-2"></i> Finish Quiz
+                                                    </button>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Sidebar with Progress and Info #}
+                    <div class="col-lg-4">
+                        {# Progress Card #}
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-primary py-3">
+                                <h5 class="mb-0 text-light fw-bold">
+                                    <i class="fas text-light fa-chart-line me-2"></i>Quiz Progress
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-medium">Progress</span>
+                                        <span class="fw-bold text-primary">{{ answered_questions }}/{{ total_questions }}</span>
+                                    </div>
+                                    <div class="progress" style="height: 12px;">
+                                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" 
+                                             role="progressbar" 
+                                             style="width: {% widthratio answered_questions total_questions 100 %}%"
+                                             aria-valuenow="{% widthratio answered_questions total_questions 100 %}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <small class="text-muted">
+                                            {% widthratio answered_questions total_questions 100 %}% complete
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                                {# Quick Navigation #}
+                                <div class="mt-4">
+                                    <h6 class="fw-bold mb-3">
+                                        <i class="fas fa-list-ol me-2"></i>Question Navigation
+                                    </h6>
+                                    <div class="row row-cols-4 g-2">
+                                        {% for q in question.quiz.question_set.all|dictsort:"question_number" %}
+                                            <div class="col">
+                                                <a href="{% url 'take_question' quiz_id=question.quiz.id question_id=q.id %}"
+                                                   class="d-block text-center p-2 border rounded {% if q.id == question.id %}bg-primary text-white{% elif q.id in answered_question_ids %}bg-success text-white{% else %}bg-light{% endif %}">
+                                                    {{ q.question_number }}
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="mt-3">
+                                        <small class="text-muted d-block mb-1">
+                                            <span class="badge bg-primary me-1">●</span> Current Question
+                                        </small>
+                                        <small class="text-muted d-block mb-1">
+                                            <span class="badge bg-success me-1">●</span> Answered
+                                        </small>
+                                        <small class="text-muted d-block">
+                                            <span class="badge bg-light card-text me-1">●</span> Unanswered
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Quiz Info Card #}
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-primary py-3">
+                                <h5 class="mb-0 fw-bold text-light ">
+                                    <i class="fas text-light fa-info-circle me-2"></i>Quiz Information
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between px-0 border-0">
+                                        <span class="text-muted">Total Questions:</span>
+                                        <span class="fw-bold">{{ total_questions }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between px-0">
+                                        <span class="text-muted">Answered:</span>
+                                        <span class="fw-bold text-success">{{ answered_questions }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between px-0 border-0">
+                                        <span class="text-muted">Remaining:</span>
+                                        <span class="fw-bold text-warning">{{ total_questions|add:"-answered_questions" }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Add some custom styling #}
+    <style>
+        .answer-option {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        
+        .answer-option:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            border-color: #dee2e6;
+        }
+        
+        .answer-option.selected-answer {
+            border-color: #0d6efd;
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+        
+        .form-check-input:checked + div {
+            color: #0d6efd;
+        }
+        
+        .progress-bar-animated {
+            animation: progress-animation 1s linear infinite;
+        }
+        
+        @keyframes progress-animation {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+        }
+        
+        .card {
+            border-radius: 15px;
+        }
+        
+        .btn-rounded {
+            border-radius: 50px;
+        }
+        
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Handle answer selection for better UX
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('form-check-input')) {
+                        const radio = this.querySelector('input[type="radio"]');
+                        if (radio) {
+                            radio.checked = true;
+                            document.querySelectorAll('.answer-option').forEach(opt => {
+                                opt.classList.remove('selected-answer');
+                            });
+                            this.classList.add('selected-answer');
+                        }
+                    }
+                });
+            });
+            
+            // Form validation
+            const form = document.getElementById('quizForm');
+            form.addEventListener('submit', function(e) {
+                const answerInputs = document.querySelectorAll('input[name="answer"], textarea[name="answer"]');
+                let hasAnswer = false;
+                
+                answerInputs.forEach(input => {
+                    if (input.type === 'radio' || input.type === 'checkbox') {
+                        if (input.checked) hasAnswer = true;
+                    } else if (input.type === 'text' || input.tagName === 'TEXTAREA') {
+                        if (input.value.trim() !== '') hasAnswer = true;
+                    }
+                });
+                
+                if (!hasAnswer) {
+                    e.preventDefault();
+                    const errorMessage = document.getElementById('errorMessage');
+                    errorMessage.classList.remove('d-none');
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+            
+            // Highlight current question in navigation
+            const currentQuestionLink = document.querySelector(`a[href*="question_id={{question.id}}"]`);
+            if (currentQuestionLink) {
+                currentQuestionLink.classList.add('current-question');
+            }
+        });
+        
+        // Simple confirmation for finishing quiz
+        function confirmFinishQuiz() {
+            const answered = {{ answered_questions }};
+            const total = {{ total_questions }};
+            
+            return confirm(`You have answered ${answered} out of ${total} questions.\n\nAre you sure you want to finish and submit the quiz?\n\nOnce submitted, you cannot change your answers.`);
+        }
+    </script>
+    
+{% else %}
+    <div class="container mt-5">
+        <div class="alert alert-warning shadow-sm">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                <div>
+                    <h4 class="alert-heading mb-2">No Question Found</h4>
+                    <p class="mb-0">The requested question could not be found. Please return to the quiz list.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock main_content %}

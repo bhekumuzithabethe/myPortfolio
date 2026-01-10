@@ -1,0 +1,99 @@
+{% extends "administration/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %} Manage Learner's {% endblock page_title %}
+
+{% block main_content %}
+
+{# --- Display Django messages (corrected message tag comparison) --- #}
+{% for message in messages %}
+    {% if "error" in message.tags %}
+        <h6 class="alert alert-danger m-4">{{ message }}</h6>
+    {% else %}
+        <h6 class="alert alert-primary m-4">{{ message }}</h6>
+    {% endif %}
+{% endfor %}
+
+{# --- Check if Learner data exists --- #}
+{% if learners %}
+    <div class="row justify-content-center mt-2">
+        <div class="col-6 col-md-12">
+            <div class="card bg-body-tertiary text-body m-4 shadow-sm rounded-4">
+                <div class="card-header bg-body-tertiary text-body fw-semibold my-3 mx-2 rounded-3">
+                 Manage Learner's
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Learner</th>
+                                    <th scope="col">Grade</th>
+                                    <th scope="col">Tutor 1</th>
+                                    <th scope="col">Tutor 2</th>
+                                    <th scope="col">Tutor 3</th>
+                                    <th scope="col">Subject 1</th>
+                                    <th scope="col">Subject 2</th>  
+                                    <th scope="col">Subject 3</th>
+                                    <th scope="col">Actions</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for learner in learners %}
+                                <tr>
+                                    <td> {{ learner.id }}</td>
+                                    <td><a href="{% url "update-learner" learner.id %}">{{ learner.learner.first_name }} {{ learner.learner.last_name }}</a></td>
+                                    <td>{{ learner.grade }}</td>
+                                    <td>{{ learner.tutor1.first_name }} {{ learner.tutor1.last_name }}</td>
+                                    <td>{{ learner.tutor2.first_name }} {{ learner.tutor2.last_name }}</td>
+                                    <td>{{ learner.tutor3.first_name }} {{ learner.tutor3.last_name }}</td>
+                                    <td>{{ learner.subject1.name }}</td>
+                                    <td>{{ learner.subject2.name }}</td>
+                                    <td>{{ learner.subject3.name }}</td>
+                                    <td>
+                                        <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ learner.id }}">Delete</button>
+                                        <a href="{% url "update-learner" learner.id %}" class="btn btn-warning m-1">Edit</a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal{{ learner.id }}" tabindex="-1" aria-labelledby="modalLabel{{ learner.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel{{ learner.id }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete <strong>{{ learner.first_name }} {{ learner.last_name }}</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="POST" action="{% url 'delete-learner' learner.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <a href="{% url "add-learner" %} "  class="btn btn-primary rounded-4">Add Learner</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h4 class="alert alert-primary mt-2">No learners yet <a href="{% url "add-learner" %} "  class="btn btn-primary">Add Learner</a></h4>
+{% endif %}
+
+{% endblock main_content %}

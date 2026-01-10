@@ -1,0 +1,67 @@
+<aside id="sidebar" class="bg-body text-body">
+    <ul>
+        <li class="{% if request.resolver_match.url_name == 'administrator' %}active{% endif %}">
+            <a href="{% url 'administrator' %}">
+               <i class="fa fa-home me-2"></i>Home
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'manage-users' %}active{% endif %}">
+            <a href="{% url 'manage-users' %}" class="d-flex justify-content-between align-items-center w-100">
+                <div class="d-flex align-items-center">
+                    <i class="fa fa-user-friends me-2"></i>
+                    <span>Manage Users</span>
+                </div>
+                {% if pending_count > 0 %}
+                <span class="badge bg-danger rounded-pill ms-2">{{ pending_count }}</span>
+                {% endif %}
+            </a>
+        </li>
+        
+        <li class="{% if request.resolver_match.url_name == 'manage-tutor-payments' %}active{% endif %}">
+            <a href="{% url 'manage-tutor-payments' %}">
+               <i class="fa fa-user-friends me-2"></i>Manage Tutor Payments
+            </a>
+        </li>
+
+        <li class="{% if request.resolver_match.url_name == 'manage-tutors' %}active{% endif %}">
+            <a href="{% url 'manage-tutors' %}">
+               <i class="fa fa-user-friends me-2"></i>Manage Tutors
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'manage-learners' %}active{% endif %}">
+            <a href="{% url 'manage-learners' %}">
+               <i class="fa fa-user-friends me-2"></i>Manage Learners
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'manage-subjects' %}active{% endif %}">
+            <a href="{% url 'manage-subjects' %}">
+               <i class="fa fa-book me-2"></i>Manage Subjects
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'manage-clients' %}active{% endif %}">
+            <a href="{% url 'manage-clients' %}">
+               <i class="fa fa-user-friends me-2"></i>Manage Clients
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'manage-payments' %}active{% endif %}">
+            <a href="{% url 'manage-payments' %}">
+               <i class="fa fa-credit-card me-2"></i>Manage Payments
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'upload_past_paper' %}active{% endif %}">
+            <a href="{% url "upload_past_paper" %}"><i class="fa fa-plus me-2"></i>Upload Past Papers</a>
+        </li>
+        
+        
+        <li class="d-md-none mobile-only-item">
+            <a href="#" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon me-2"></i>
+                <span id="theme-label">Toggle Theme</span>
+            </a>
+        </li>
+        <!-- Mobile-only items (hidden on large screens) -->
+        <li class="d-md-none mobile-only-item {% if request.resolver_match.url_name == 'dologout' %}active{% endif %}">
+            <a href="{% url 'dologout' %}"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+        </li>
+    </ul>
+</aside>

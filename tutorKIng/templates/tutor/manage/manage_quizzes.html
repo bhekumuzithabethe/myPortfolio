@@ -1,0 +1,91 @@
+{% extends "tutor/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %} Manage Quizze's {% endblock page_title %}
+
+{% block main_content %}
+
+{# --- Display Django messages (corrected message tag comparison) --- #}
+{% for message in messages %}
+    {% if "error" in message.tags %}
+        <h6 class="alert alert-danger m-4">{{ message }}</h6>
+    {% else %}
+        <h6 class="alert alert-primary m-4">{{ message }}</h6>
+    {% endif %}
+{% endfor %}
+
+{# --- Check if Quiz data exists --- #}
+{% if quizzes %}
+    <div class="row justify-content-center mt-2">
+        <div class="col-6 col-md-12">
+            <div class="card bg-body-tertiary text-body m-4 shadow-sm rounded-4">
+                <div class="card-header bg-body-tertiary text-body fw-semibold my-3 mx-2 rounded-3">
+                 Manage Quizze's
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Total Marks</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Actions</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for quizze in quizzes %}
+                                <tr>
+                                    <td> {{ quizze.id }}</td>
+                                    <td><a href="{% url "manage_questions" quizze.id %}">{{ quizze.quiz_title }}</a></td>
+                                    <td>{{ quizze.subject.name }}</td>
+                                    <td>{{ quizze.total_marks }}</td>
+                                    <td>{{ quizze.duration }} min</td>
+                                    <td>
+                                        <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{ quizze.id }}">Delete</button>
+                                        <a href="{% url "update_quiz" quizze.id %}" class="btn btn-warning m-1">Edit</a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteModal{{ quizze.id }}" tabindex="-1" aria-labelledby="modalLabel{{ quizze.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel{{ quizze.id }}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete <strong>{{ quizze.quiz_title }}</strong>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="POST" action="{% url 'delete_quiz' quizze.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <a href="{% url "create_quiz" %} "  class="btn btn-primary">Create Quiz</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h4 class="alert alert-primary m-4">No quizzes yet.<a href="{% url "create_quiz" %} "  class="btn btn-primary">Create Quiz</a></h4>
+{% endif %}
+
+{% endblock main_content %}

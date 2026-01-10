@@ -1,0 +1,55 @@
+<!-- Sticky Sidebar Navigation -->
+<aside id="sidebar" class="bg-body text-body">
+    <ul>
+        <!-- Home link -->
+        <li class="{% if request.resolver_match.url_name == 'tutor' %}active{% endif %}">
+            <a href="{% url "tutor" %}"><i class="fa fa-home me-2"></i>Home</a>
+        </li>
+            <li class="{% if request.resolver_match.url_name == 'chatbot' %}active{% endif %}">
+            <a href="{% url "chatbot" %}"><svg xmlns="http://www.w3.org/2000/svg" class="me-2" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2780e3"><path d="M323-160q-11 0-20.5-5.5T288-181l-78-139h58l40 80h92v-40h-68l-40-80H188l-57-100q-2-5-3.5-10t-1.5-10q0-4 5-20l57-100h104l40-80h68v-40h-92l-40 80h-58l78-139q5-10 14.5-15.5T323-800h97q17 0 28.5 11.5T460-760v160h-60l-40 40h100v120h-88l-40-80h-92l-40 40h108l40 80h112v200q0 17-11.5 28.5T420-160h-97Zm217 0q-17 0-28.5-11.5T500-200v-200h112l40-80h108l-40-40h-92l-40 80h-88v-120h100l-40-40h-60v-160q0-17 11.5-28.5T540-800h97q11 0 20.5 5.5T672-779l78 139h-58l-40-80h-92v40h68l40 80h104l57 100q2 5 3.5 10t1.5 10q0 4-5 20l-57 100H668l-40 80h-68v40h92l40-80h58l-78 139q-5 10-14.5 15.5T637-160h-97Z"/></svg>Thabethe AI</a>
+        </li>
+
+                <!-- Link to Payment Forms -->
+        <li class="{% if request.resolver_match.url_name == 'tutor-manage-subjects' %}active{% endif %}">
+            <a href="{% url "tutor-manage-subjects" %}"><i class="fa-solid fa-list-check me-2"></i>Subjects</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'tutor-manage-classes' %}active{% endif %}">
+            <a href="{% url "tutor-manage-classes" %}"><i class="fa-solid fa-list-check me-2"></i>Classes</a>
+        </li>
+
+                <!-- Link to Payment Forms -->
+        <li class="{% if request.resolver_match.url_name == 'manage_quizzes' %}active{% endif %}">
+            <a href="{% url "manage_quizzes" %}"><i class="fa-solid fa-list-check me-2"></i>Tests & Quizzes</a>
+        </li>
+
+        <li class="{% if request.resolver_match.url_name == 'tutor_past_papers_subjects' %}active{% endif %}">
+            <a href="{% url "tutor_past_papers_subjects" %}"><i class="fa-solid fa-scroll me-2"></i>Past Papers</a>
+        </li>
+
+                <!-- Link to Payment Forms -->
+        <li class="{% if request.resolver_match.url_name == 'payment-form' %}active{% endif %}">
+            <a href="{% url "payment-form" %}"><i class="fa fa-credit-card me-2"></i>Payment Forms</a>
+        </li>
+
+                <!-- Link to Client Forms -->
+        <li class="{% if request.resolver_match.url_name == 'referrer-form' %}active{% endif %}">
+            <a href="{% url "referrer-form" %}"><i class="fa fa-users me-2"></i>Referrer Forms</a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'client-form' %}active{% endif %}">
+            <a href="{% url "client-form" %}"><i class="fa fa-users me-2"></i>Client Forms</a>
+        </li>
+            
+        <li class="d-md-none mobile-only-item">
+            <a href="#" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon me-2"></i>
+                <span id="theme-label">Toggle Theme</span>
+            </a>
+        </li>
+        <!-- Mobile-only items (hidden on large screens) -->
+        <li class="d-md-none mobile-only-item {% if request.resolver_match.url_name == 'dologout' %}active{% endif %}">
+            <a href="{% url 'dologout' %}"><i class="fa fa-sign-out-alt me-2"></i>Logout</a>
+        </li>
+    </ul>
+
+</aside>
+
